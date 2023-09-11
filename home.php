@@ -3,7 +3,7 @@ include("setting.php");
 session_start();
 if(!isset($_SESSION['email']))
 {
-	header("location:index.php");
+	header("location:");
 }
 $email=$_SESSION['email'];
 $a=mysqli_query($al, "SELECT * FROM customers WHERE email='$email'");
@@ -29,7 +29,8 @@ $name=$b['name'];
   <br />
   <table class="menu1">
 
-<tr><td><a href="book.php" class="cmd"  style="color:white; padding:10px;"><b>♦ Book Food items</b></a></td><td><a href="changePassword.php" class="cmd"  style="color:white;padding:10px;"><b>♦ Change Password</b></a></td></tr>
+<tr><td><a href="book.php" class="cmd"  style="color:white; padding:10px;"><b>♦ Book Food items</b></a></td>
+<td><a href="changePassword.php" class="cmd"  style="color:white;padding:10px;"><b>♦ Change Password</b></a></td></tr>
 <tr><td colspan="2" align="center"><a href="logout.php" class="cmd"  style="color:white;padding:10px;"><b>♦ Logout</b></a>
 </table>
 </div>

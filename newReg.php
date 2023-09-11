@@ -4,12 +4,13 @@ $n=$_POST['name'];
 $e=$_POST['email'];
 $c=$_POST['contact'];
 $p=sha1($_POST['pass']);
+
 if($n!=NULL && $e!=NULL && $c!=NULL && $_POST['pass']!=NULL)
 {
 	$sql=mysqli_query($al, "INSERT INTO users(name,email,contact,password) VALUES('$n','$e','$c','$p')");
 	if($sql)
 	{
-		$info="Successfully Registered";
+		header("location:home.php");
 	}
 	else
 	{
@@ -35,7 +36,7 @@ if($n!=NULL && $e!=NULL && $c!=NULL && $_POST['pass']!=NULL)
 <br />
 <div align="center"><br />
 <br />
-<span class="subHead">Registration Panel</span><br />
+<span class="subHead">Login  Panel</span><br />
 <br />
 
 <form method="post" action="">

@@ -6,10 +6,12 @@ include('setting.php');
 
 if($_SERVER["REQUEST_METHOD"]=="POST"){
     $username=$_POST["email"];
-    $password=$_POST["password"];
+    $password=sha1($_POST["password"]);
 	
+
     $sql="select * from users where email ='".$username."' AND password='".$password."'";
 
+    
     $result=mysqli_query($al,$sql);
 
     $row=mysqli_fetch_array($result);
@@ -46,11 +48,15 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
 <span class="headingMain">Online Food &amp; Management System</span>
 </div>
 </div>
+<marquee width="60%" direction="left" height="100px" style="color:aqua;">
+"People who love to eat are always the best people." - ...  "The only way to get rid of a temptation is to yield to it." -
+</marquee>
 <br />
 <br />
 <div align="center">
 <span class="subHead" style="color:pink;">User Login</span><br />
 <br />
+
 
 <form method="post" action="">
 <table border="0" align="center" cellpadding="5" cellspacing="5" class="design" style="background:lightgray;">

@@ -1,24 +1,25 @@
 <?php
 include("setting.php");
 session_start();
-if(isset($_SESSION['aid']))
+if(isset($_SESSION['email']))
 {
 	header("location:ahome.php");
 }
-$e=mysqli_real_escape_string($al, $_POST['aid']);
-$p=mysqli_real_escape_string($al, $_POST['pass']);
-if($_POST['aid']!=NULL && $_POST['pass']!=NULL)
+$e=mysqli_real_escape_string($al, $_POST['email']);
+$p=mysqli_real_escape_string ($al, $_POST['password']);
+$p=sha1( $_POST['password']);
+if($_POST['email']!=NULL && $_POST['password']!=NULL)
 {
-	$pp=sha1($p);
-	$sql=mysqli_query($al, "SELECT * FROM admin WHERE aid='$e' AND password='$pp'");
+	$sql=mysqli_query($al, "SELECT * FROM users WHERE email='$e' AND password='$p'");
+	
 	if(mysqli_num_rows($sql)==1)
 	{
-		$_SESSION['aid']=$e;
+		$_SESSION['email']=$e;
 		header("location:ahome.php");
 	}
 	else
 	{
-		$info="Incorrect Admin ID or Password";
+		$info="Incorrect Email or Password";
 	}
 }
 ?>
@@ -48,8 +49,8 @@ if($_POST['aid']!=NULL && $_POST['pass']!=NULL)
 <form method="post" action="">
 <table border="0" align="center" cellpadding="5" cellspacing="5" class="design" style="background:lightgray;">
 <tr><td colspan="2" class="info" align="center"><?php echo $info;?></td></tr>
-<tr><td class="labels">Admin ID : </td><td><input type="text" size="25" name="aid" class="fields" placeholder="Enter Admin ID" required="required" /></td></tr>
-<tr><td class="labels">Password : </td><td><input type="password" size="25" name="pass" class="fields" placeholder="Enter Password" required="required" /></td></tr>
+<tr><td class="labels">Email : </td><td><input type="email" size="25" name="email" class="fields" placeholder="Enter Email ID" required="required" autocomplete="off" /></td></tr>
+<tr><td class="labels">Password : </td><td><input type="password" size="25" name="password" class="fields" placeholder="Enter Password" required="required" /></td></tr>
 <tr><td colspan="2" align="center"><input type="submit" value="Login" class="fields" /></td></tr>
 </table>
 </form>
